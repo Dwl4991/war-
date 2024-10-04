@@ -1,80 +1,153 @@
+import time
+import schedule
+import logging
+from datetime import datetime, timedelta
+import random
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
-import random
-import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
+	# 34.101.225.88
+    # alert-rush-437514-b6
+# forms = {
+#     '1': {
+#         'name': 'Form WAR DU PERIO 82 python',
+#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSejgwHKHkbwZzWs9gU8iFvucIVu1i7yJRi1ddw2zcj3CwEkRA/viewform',
+#         'submission_day': 'saturday',
+#         'submission_time': '00:01',
+#         'field_mapping': {
+#             "nama": "Putri Dewi Python",
+#             "kelompok kerumahsakitan": "3",
+#             "rencana kerja": "Scalling Uss",
+#             "pilihan 1": "Selasa shift 3",
+#             "pilihan 2": "Senin Shift 2",
+#             "sudah berapa kali": "1"
+#         },
+#         'field_input': ['text_input', 'radio', 'text_input', 'radio', 'radio', 'text_input']
+#     },
+#     '2': {
+#         'name': 'Form WAR DU KGA KOAS 82python',
+#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSd2KhKOkWDXqK9mDMZy5CUaUcZ3Arcw2HvIG_V3vkaWdrLukw/viewform',
+#         'submission_day':'saturday',
+#         'submission_time':'00:02',
+#         'field_mapping': {
+#             "nama": "Putri Dewi PTYHON",
+#             "kloter kerumahsakitan": "Kloter 3",
+#             "pilihan 1 kerja shift": "Senin Shift 1 (08.00 - 10.00)",
+#             "total kerja": "25",
+#             "pilihan 2": "Jum'at Shift 1 (08.00 - 10.00)",
+#             "tindakan": "DX",
+#             "Akumulasi DU Angkatan": "0"
+#         },
+#         'field_input': ['text_input', 'radio', 'radio', 'text_input', 'radio', 'text_input', 'text_input']
+#     },
+#     '3': {
+#         'name': 'Form WAR DU PROSTHO 82python',
+#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSfzviUqHdnod2r2eW7Wk2PriGxDRVjRyg6u2TklAjY79vfkgA/viewform',
+#         'submission_day':'saturday',
+#         'submission_time':'00:03',
+#         'field_mapping': {
+#             "operator": 'Deva PTYHON',
+#             "Klinik": "Non Aerosol",
+#             "tindakan": "Konsultasi GTC",
+#             "Requirement": "GTC",
+#             "Dosen Pembimbing": "drg. Pramudya Aditama, MDSc",
+#             "hari kerja": "Jumat",
+#             "shift": 'Shift 2 (10.00 - 12.00)'
+#         },
+#         'field_input': ['text_input', 'radio', 'text_input', 'radio', 'radio', 'radio', 'radio']
+#     },
+#     '4': {
+#         'name': 'Form WAR DU KONSERVASI 82python',
+#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSf3Ag2Bx5f4SWX7Oh6cGXzdlBS7FztcSHk8uA5c3Aj_xpHtqA/viewform',
+#         'submission_day':'saturday',
+#         'submission_time':'00:04',
+#         'field_mapping': {
+#             "nama": "Putri Dewi PTYHON",
+#             "Kelompok kerumahsakitan": '3',
+#             "Rencana KErja": "Restorasi RK Kelas I",
+#             "Pilihan 1": "Selasa Shift 2 (11.00 -14.00)",
+#             "Pilihan 2": "Kamis Shift 2 (11.00 -14.00)",
+#             "Akumulasi DU KONSERVASI": "20"
+#         },
+#         'field_input': ["text_input", "radio", 'text_input', "radio", "radio", "text_input"]
+#     }
+# }
 forms = {
     '1': {
-        'name': 'Form WAR DU PERIO 82',
-        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSejgwHKHkbwZzWs9gU8iFvucIVu1i7yJRi1ddw2zcj3CwEkRA/viewform',
+        'name': 'Form WAR DU PERIO 82 ',
+        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSdXx_sefHEBnQi3EjO_eqVJEdj9AXeh2BxDSmES8JHmdRvN5A/viewform',
+        'submission_day': 'saturday',
+        'submission_time': '09:05',
         'field_mapping': {
-            "nama": "Devaaa",
-            "kelompok": "1",
-            "rencana kerja": "Scalling",
-            "pilihan 1": "Senin Shift 2",
-            "pilihan 2": "Kamis shift1",
-            "sudah berapa kali": "1"
+            "nama": "Putri Dewi",
+            "kelompok kerumahsakitan": "3",
+            "rencana kerja": "Scalling Uss",
+            "pilihan 1": "Selasa shift 3",
+            "pilihan 2": "Senin shift 2",
+            "sudah berapa kali": "0"
         },
         'field_input': ['text_input', 'radio', 'text_input', 'radio', 'radio', 'text_input']
     },
     '2': {
         'name': 'Form WAR DU KGA KOAS 82',
-        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSd2KhKOkWDXqK9mDMZy5CUaUcZ3Arcw2HvIG_V3vkaWdrLukw/viewform',
+        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSc6UciRDNTe6vHwgcgBBN9yzc6N1C-8vDVkziMI2a9woq6OSA/viewform',
+        'submission_day':'saturday',
+        'submission_time':'09:10',
         'field_mapping': {
-            "nama": "DU KGA",
-            "kloter kerumahsakitan": "kloter 2",
-            "pilihan 1 kerja shift": "Jum'at Shift 1 (08.00 - 10.00)",
-            "total kerja": "25",
-            "pilihan 2": "Senin Shift 1 (08.00 - 10.00)",
-            "tindakan": "lalala",
-            "Akumulasi DU Angkatan": "100"
+            "nama": "Putri Dewi",
+            "kloter kerumahsakitan": "Kloter 3",
+            "pilihan 1 kerja shift": "Senin Shift 1 (08.00 - 10.00)",
+            "total kerja": "0",
+            "pilihan 2": "Jum'at Shift 1 (08.00 - 10.00)",
+            "tindakan": "DX",
+            "Akumulasi DU Angkatan": "0"
         },
         'field_input': ['text_input', 'radio', 'radio', 'text_input', 'radio', 'text_input', 'text_input']
     },
     '3': {
         'name': 'Form WAR DU PROSTHO 82',
-        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSfzviUqHdnod2r2eW7Wk2PriGxDRVjRyg6u2TklAjY79vfkgA/viewform',
+        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSeymzMTOC-FYBgyr5kapkTxzalXCZtE8CWwbGICibW0Z1WHDw/viewform',
+        'submission_day':'saturday',
+        'submission_time':'09:20',
         'field_mapping': {
-            "operator": 'Deva Mahendra Prostoh',
+            "operator": 'Putri Dewi',
             "Klinik": "Non Aerosol",
-            "tindakan": "Pencetakan",
-            "Requirement": "GTL",
-            "Dosen Pembimbing": "Dr. drg. Titik Ismiyati, MS., Sp.Pros(K)",
-            "hari kerja": "kamis",
+            "tindakan": "Konsultasi GTC",
+            "Requirement": "GTC",
+            "Dosen Pembimbing": "drg. Pramudya Aditama, MDSc",
+            "hari kerja": "Jumat",
             "shift": 'Shift 2 (10.00 - 12.00)'
         },
         'field_input': ['text_input', 'radio', 'text_input', 'radio', 'radio', 'radio', 'radio']
     },
     '4': {
         'name': 'Form WAR DU KONSERVASI 82',
-        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSf3Ag2Bx5f4SWX7Oh6cGXzdlBS7FztcSHk8uA5c3Aj_xpHtqA/viewform',
+        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSeFGvuNImU7dlQ9aqBd0q2cz-rymqA1medBYLS-CTcPhBEI9Q/viewform',
+        'submission_day':'saturday',
+        'submission_time':'09:25',
         'field_mapping': {
-            "nama": "madya kurnia",
-            "Kelompok kerumahsakitan": '2',
-            "Rencana KErja": "Restorasi RK Kelas 2",
-            "Pilihan 1": "Kamis Shift 1 (08.00 - 11.00)",
-            "Pilihan 2": "Selasa Shift 2 (11.00 -14.00)",
+            "nama": "Putri Dewi",
+            "Kelompok kerumahsakitan": '3',
+            "Rencana KErja": "Restorasi RK Kelas I",
+            "Pilihan 1": "Selasa Shift 2 (11.00 -14.00)",
+            "Pilihan 2": "Kamis Shift 2 (11.00 -14.00)",
             "Akumulasi DU KONSERVASI": "20"
         },
         'field_input': ["text_input", "radio", 'text_input', "radio", "radio", "text_input"]
     }
 }
-
 def random_delay(min_seconds=1, max_seconds=5):
     time.sleep(random.uniform(min_seconds, max_seconds))
 
-def parse_form(url, field_mapping, field_input):
+def fill_form(url, field_mapping, field_input):
     options = uc.ChromeOptions()
-    options.add_argument("--user-data-dir=./chrome_profile")
+    options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1920,1080")
-    options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36")
 
     driver = uc.Chrome(options=options)
     driver.get(url)
@@ -101,10 +174,8 @@ def parse_form(url, field_mapping, field_input):
     for index, item in enumerate(form_items, start=1):
         try:
             title = next((item.find_element(By.CSS_SELECTOR, selector).text for selector in title_selectors if item.find_elements(By.CSS_SELECTOR, selector)), "Unable to find title")
-            
             input_type = "Text Input" if item.find_elements(By.CSS_SELECTOR, "input[type='text']") else "Radio Buttons"
             logging.info(f"Field {index}: {title} - Type: {input_type}")
-            
             for key, value in field_mapping.items():
                 if key.lower() in title.lower():
                     if input_type == "Text Input":
@@ -122,17 +193,18 @@ def parse_form(url, field_mapping, field_input):
                         else:
                             logging.warning(f"No matching option found for '{key}' with value '{value}'")
                     break
-            
             if input_type == "Radio Buttons":
                 options = [option.text for option in item.find_elements(By.CSS_SELECTOR, "label[role='radio']")]
                 for i, option in enumerate(options, start=1):
                     logging.info(f"  Option {i}: {option}")
-            
             logging.info("")
         except Exception as e:
             logging.error(f"Field {index}: Unable to parse - Error: {str(e)}")
             logging.info("")
 
+    return driver  # Return the driver to keep the session open
+
+def submit_form(driver):
     # Attempt to submit the form
     try:
         submit_button = driver.find_element(By.CSS_SELECTOR, "div[role='button']")
@@ -141,5 +213,36 @@ def parse_form(url, field_mapping, field_input):
     except Exception as e:
         logging.error(f"Failed to submit form: {str(e)}")
         driver.save_screenshot("form_submission_failure.png")
+    finally:
+        driver.quit()
 
-    driver.quit()
+def schedule_form_submission(form_id):
+    form = forms[form_id]
+    driver = fill_form(form['url'], form['field_mapping'], form['field_input'])
+
+    # Calculate the exact submission time
+    submission_time = datetime.strptime(form['submission_time'], "%H:%M")
+    submission_datetime = datetime.combine(datetime.now(), submission_time.time())
+
+    # Adjust the submission time to 1 second before the desired time
+    submission_datetime -= timedelta(seconds=0.01)
+
+    # Wait until the adjusted submission time
+    while datetime.now() < submission_datetime:
+        time.sleep(0.01)  # Use a smaller sleep interval for better precision
+
+    submit_form(driver)
+
+def schedule_submissions():
+    for form_id, form in forms.items():
+        # Schedule the form filling 1 minute and 1 second before the submission time
+        submission_time = datetime.strptime(form['submission_time'], "%H:%M")
+        fill_time = (submission_time - timedelta(minutes=1, seconds=1)).strftime("%H:%M:%S")
+        getattr(schedule.every(), form['submission_day']).at(fill_time).do(schedule_form_submission, form_id)
+        # schedule.every(3).minutes.do(schedule_form_submission, form_id)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+if __name__ == "__main__":
+    schedule_submissions()
