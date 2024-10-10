@@ -11,32 +11,50 @@ from selenium.webdriver.support import expected_conditions as EC
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 	# 34.101.225.88
     # alert-rush-437514-b6
+forms = {
+    '1': {
+        'name': 'Percobaan Form Cancel ',
+        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSei4uL_d_nBeDFGGmU743XILpKuklo0_tzmZYAZLp9j4HFahQ/viewform?vc=0&c=0&w=1&flr=0',
+        'submission_day': 'thursday',
+        'submission_time': '23:54',
+        'field_mapping': {
+            "nama": "Putri Dewi Angelina Coba",
+            "Angkatan": "3",
+            "Departemen": "BM",
+            "Tindakan": "Selasa shift 3",
+            "Jenis DU": "Aerosol",
+            "hari kerja": "Rabu",
+            "shift": "1"
+        },
+        'field_input': ['text_input', 'text_input','radio','text_input',  'radio', 'radio', 'radio']
+    },
+}
 # forms = {
 #     '1': {
-#         'name': 'Form WAR DU PERIO 82 python',
-#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSejgwHKHkbwZzWs9gU8iFvucIVu1i7yJRi1ddw2zcj3CwEkRA/viewform',
+#         'name': 'Form WAR DU PERIO 82 ',
+#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSdXx_sefHEBnQi3EjO_eqVJEdj9AXeh2BxDSmES8JHmdRvN5A/viewform',
 #         'submission_day': 'saturday',
-#         'submission_time': '00:01',
+#         'submission_time': '09:05',
 #         'field_mapping': {
-#             "nama": "Putri Dewi Python",
+#             "nama": "Putri Dewi",
 #             "kelompok kerumahsakitan": "3",
 #             "rencana kerja": "Scalling Uss",
 #             "pilihan 1": "Selasa shift 3",
-#             "pilihan 2": "Senin Shift 2",
-#             "sudah berapa kali": "1"
+#             "pilihan 2": "Senin shift 2",
+#             "sudah berapa kali": "0"
 #         },
 #         'field_input': ['text_input', 'radio', 'text_input', 'radio', 'radio', 'text_input']
 #     },
 #     '2': {
-#         'name': 'Form WAR DU KGA KOAS 82python',
-#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSd2KhKOkWDXqK9mDMZy5CUaUcZ3Arcw2HvIG_V3vkaWdrLukw/viewform',
+#         'name': 'Form WAR DU KGA KOAS 82',
+#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSc6UciRDNTe6vHwgcgBBN9yzc6N1C-8vDVkziMI2a9woq6OSA/viewform',
 #         'submission_day':'saturday',
-#         'submission_time':'00:02',
+#         'submission_time':'09:10',
 #         'field_mapping': {
-#             "nama": "Putri Dewi PTYHON",
+#             "nama": "Putri Dewi",
 #             "kloter kerumahsakitan": "Kloter 3",
 #             "pilihan 1 kerja shift": "Senin Shift 1 (08.00 - 10.00)",
-#             "total kerja": "25",
+#             "total kerja": "0",
 #             "pilihan 2": "Jum'at Shift 1 (08.00 - 10.00)",
 #             "tindakan": "DX",
 #             "Akumulasi DU Angkatan": "0"
@@ -44,12 +62,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 #         'field_input': ['text_input', 'radio', 'radio', 'text_input', 'radio', 'text_input', 'text_input']
 #     },
 #     '3': {
-#         'name': 'Form WAR DU PROSTHO 82python',
-#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSfzviUqHdnod2r2eW7Wk2PriGxDRVjRyg6u2TklAjY79vfkgA/viewform',
+#         'name': 'Form WAR DU PROSTHO 82',
+#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSeymzMTOC-FYBgyr5kapkTxzalXCZtE8CWwbGICibW0Z1WHDw/viewform',
 #         'submission_day':'saturday',
-#         'submission_time':'00:03',
+#         'submission_time':'09:20',
 #         'field_mapping': {
-#             "operator": 'Deva PTYHON',
+#             "operator": 'Putri Dewi',
 #             "Klinik": "Non Aerosol",
 #             "tindakan": "Konsultasi GTC",
 #             "Requirement": "GTC",
@@ -60,12 +78,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 #         'field_input': ['text_input', 'radio', 'text_input', 'radio', 'radio', 'radio', 'radio']
 #     },
 #     '4': {
-#         'name': 'Form WAR DU KONSERVASI 82python',
-#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSf3Ag2Bx5f4SWX7Oh6cGXzdlBS7FztcSHk8uA5c3Aj_xpHtqA/viewform',
+#         'name': 'Form WAR DU KONSERVASI 82',
+#         'url': 'https://docs.google.com/forms/d/e/1FAIpQLSeFGvuNImU7dlQ9aqBd0q2cz-rymqA1medBYLS-CTcPhBEI9Q/viewform',
 #         'submission_day':'saturday',
-#         'submission_time':'00:04',
+#         'submission_time':'09:25',
 #         'field_mapping': {
-#             "nama": "Putri Dewi PTYHON",
+#             "nama": "Putri Dewi",
 #             "Kelompok kerumahsakitan": '3',
 #             "Rencana KErja": "Restorasi RK Kelas I",
 #             "Pilihan 1": "Selasa Shift 2 (11.00 -14.00)",
@@ -75,70 +93,6 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 #         'field_input': ["text_input", "radio", 'text_input', "radio", "radio", "text_input"]
 #     }
 # }
-forms = {
-    '1': {
-        'name': 'Form WAR DU PERIO 82 ',
-        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSdXx_sefHEBnQi3EjO_eqVJEdj9AXeh2BxDSmES8JHmdRvN5A/viewform',
-        'submission_day': 'saturday',
-        'submission_time': '09:05',
-        'field_mapping': {
-            "nama": "Putri Dewi",
-            "kelompok kerumahsakitan": "3",
-            "rencana kerja": "Scalling Uss",
-            "pilihan 1": "Selasa shift 3",
-            "pilihan 2": "Senin shift 2",
-            "sudah berapa kali": "0"
-        },
-        'field_input': ['text_input', 'radio', 'text_input', 'radio', 'radio', 'text_input']
-    },
-    '2': {
-        'name': 'Form WAR DU KGA KOAS 82',
-        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSc6UciRDNTe6vHwgcgBBN9yzc6N1C-8vDVkziMI2a9woq6OSA/viewform',
-        'submission_day':'saturday',
-        'submission_time':'09:10',
-        'field_mapping': {
-            "nama": "Putri Dewi",
-            "kloter kerumahsakitan": "Kloter 3",
-            "pilihan 1 kerja shift": "Senin Shift 1 (08.00 - 10.00)",
-            "total kerja": "0",
-            "pilihan 2": "Jum'at Shift 1 (08.00 - 10.00)",
-            "tindakan": "DX",
-            "Akumulasi DU Angkatan": "0"
-        },
-        'field_input': ['text_input', 'radio', 'radio', 'text_input', 'radio', 'text_input', 'text_input']
-    },
-    '3': {
-        'name': 'Form WAR DU PROSTHO 82',
-        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSeymzMTOC-FYBgyr5kapkTxzalXCZtE8CWwbGICibW0Z1WHDw/viewform',
-        'submission_day':'saturday',
-        'submission_time':'09:20',
-        'field_mapping': {
-            "operator": 'Putri Dewi',
-            "Klinik": "Non Aerosol",
-            "tindakan": "Konsultasi GTC",
-            "Requirement": "GTC",
-            "Dosen Pembimbing": "drg. Pramudya Aditama, MDSc",
-            "hari kerja": "Jumat",
-            "shift": 'Shift 2 (10.00 - 12.00)'
-        },
-        'field_input': ['text_input', 'radio', 'text_input', 'radio', 'radio', 'radio', 'radio']
-    },
-    '4': {
-        'name': 'Form WAR DU KONSERVASI 82',
-        'url': 'https://docs.google.com/forms/d/e/1FAIpQLSeFGvuNImU7dlQ9aqBd0q2cz-rymqA1medBYLS-CTcPhBEI9Q/viewform',
-        'submission_day':'saturday',
-        'submission_time':'09:25',
-        'field_mapping': {
-            "nama": "Putri Dewi",
-            "Kelompok kerumahsakitan": '3',
-            "Rencana KErja": "Restorasi RK Kelas I",
-            "Pilihan 1": "Selasa Shift 2 (11.00 -14.00)",
-            "Pilihan 2": "Kamis Shift 2 (11.00 -14.00)",
-            "Akumulasi DU KONSERVASI": "20"
-        },
-        'field_input': ["text_input", "radio", 'text_input', "radio", "radio", "text_input"]
-    }
-}
 def random_delay(min_seconds=1, max_seconds=5):
     time.sleep(random.uniform(min_seconds, max_seconds))
 
